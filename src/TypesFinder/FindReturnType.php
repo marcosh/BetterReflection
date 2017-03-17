@@ -22,6 +22,10 @@ class FindReturnType
     {
         $context = $this->createContextForFunction($function);
 
+        if ('' === $function->getDocComment()) {
+            return [];
+        }
+
         $returnTags = DocBlockFactory::createInstance()->create(
             $function->getDocComment(),
             new Context(
